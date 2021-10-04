@@ -1,11 +1,11 @@
 # 🐢 ros-nvim 🐢
 ROS in Neovim.
 
-List ROS nodes with live info 🔦
+**List ROS nodes with live info 🔦**
 ![nodelist_compressed](https://user-images.githubusercontent.com/37300147/135919833-d8988f88-7bf6-4e62-928a-5470ff18a1b5.gif)
-List ROS msgs with definitions ✉️
+**List ROS msgs with definitions ✉️**
 ![msg_compressed](https://user-images.githubusercontent.com/37300147/135919840-d5978470-f50e-4d66-9c02-dc6120189da4.gif)
-Search current ROS package 🔎
+**Search current ROS package 🔎**
 ![search_package_compressed](https://user-images.githubusercontent.com/37300147/135919843-af069238-8483-43c0-85ee-35ac1e08b3f0.gif)
 
 Wraps ROS CLI utils (`rosnode`, `rostopic`, `rosmsg`, etc) with Vim and Telescope to bring it right to your favourite editor! 😁
