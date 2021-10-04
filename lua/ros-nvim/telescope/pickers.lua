@@ -3,8 +3,8 @@ local pickers = require "telescope.pickers"
 local _, Job = pcall(require, "plenary.job")
 local conf = require "telescope.config".values
 local action_set = require "telescope.actions.set"
-local ros_previewers = require "ros.telescope.previewer"
-local utils = require "ros.telescope.utils"
+local ros_previewers = require "ros-nvim.telescope.previewer"
+local utils = require "ros-nvim.telescope.utils"
 
 local M = {}
 

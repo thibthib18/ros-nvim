@@ -1,4 +1,4 @@
-local package = require("ros.package")
+local package = require("ros-nvim.package")
 local M = {}
 
 M.search_package = function()
