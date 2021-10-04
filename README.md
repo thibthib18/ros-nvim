@@ -1,6 +1,10 @@
 # 🐢 ros-nvim 🐢
 ROS in Neovim.
 
+![nodelist_compressed](https://user-images.githubusercontent.com/37300147/135919833-d8988f88-7bf6-4e62-928a-5470ff18a1b5.gif)
+![msg_compressed](https://user-images.githubusercontent.com/37300147/135919840-d5978470-f50e-4d66-9c02-dc6120189da4.gif)
+![search_package_compressed](https://user-images.githubusercontent.com/37300147/135919843-af069238-8483-43c0-85ee-35ac1e08b3f0.gif)
+
 Wraps ROS CLI utils (`rosnode`, `rostopic`, `rosmsg`, etc) with Vim and Telescope to bring it right to your favourite editor! 😁
 
 ## 🤩 Features
@@ -73,11 +77,16 @@ nnoremap <leader>fp <cmd>lua require('ros-nvim.telescope.package').search_packag
 " Live grep in current package
 nnoremap <leader>fgp <cmd>lua require('ros-nvim.telescope.package').grep_package()<cr>
 
-" ROS Introspection
+" #### ROS Introspection ####
+" Topics list & info
 nnoremap <leader>rtl <cmd>lua require('ros-nvim.telescope.pickers').topic_picker()<cr>
+" Nodes list & info
 nnoremap <leader>rnl <cmd>lua require('ros-nvim.telescope.pickers').node_picker()<cr>
+" Services list & info
 nnoremap <leader>rsl <cmd>lua require('ros-nvim.telescope.pickers').service_picker()<cr>
+" Service definitions list & info
 nnoremap <leader>rds <cmd>lua require('ros-nvim.telescope.pickers').srv_picker()<cr>
+" Message definitions list & info
 nnoremap <leader>rdm <cmd>lua require('ros-nvim.telescope.pickers').msg_picker()<cr>
 
 " Build entire workspace
