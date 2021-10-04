@@ -1,5 +1,5 @@
 # 🐢 ros-nvim 🐢
-ROS in Neovim.
+[ROS](https://www.ros.org) in Neovim.
 
 **List ROS nodes with live info 🔦**
 ![nodelist_compressed](https://user-images.githubusercontent.com/37300147/135919833-d8988f88-7bf6-4e62-928a-5470ff18a1b5.gif)
