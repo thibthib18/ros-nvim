@@ -1,29 +1,31 @@
-# ros-nvim
-ROS Integration in Neovim
+# 🐢 ros-nvim 🐢
+ROS in Neovim.
 
-Features
+Wraps ROS CLI utils (`rosnode`, `rostopic`, `rosmsg`, etc) with Vim and Telescope to bring it right to your favourite editor! 😁
 
-Search files with Telescope in the current ROS package
-Live grep with Telescope in the current ROS package
-Build current ROS package in split terminalpackage
-Execute current ROS test in split terminal
+## 🤩 Features
 
-Telescope extensions for ROS introspection
+### 📦 ROS package wise build and search
 
-Nodes list & info
-Topics list & info
-Services list & info
-Msgs list & info
-Srvs list & info
+- Search files with Telescope in the current ROS package
+- Live grep with Telescope in the current ROS package
+- Build current ROS package in split terminal
+- Execute current ROS test in split terminal
 
+### 🕵️  Several Telescope extensions for ROS introspection
 
+- Nodes list & info
+- Topics list & info
+- Services list & info
+- Msgs list & info
+- Srvs list & info
 
-Requirements
+## 🦒 Requirements
 
-Nvim >= 0.5
-nvim-telescope
+- Nvim >= 0.5
+- (recommended) [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
-Installation
+## 🏠 Installation
 
 With your plugin manager of choice:
 
@@ -31,8 +33,14 @@ vim-plug:
 ```vim
 Plug 'thibthib18/ros-nvim'
 ```
+Packer:
+```lua
+use { 'thibthib18/ros-nvim', config=function()
+  require 'ros-nvim'.setup({})
+}
+```
 
-Setup
+## ⚙️  Setup
 
 In Lua:
 ```lua
@@ -56,27 +64,28 @@ require 'ros-nvim'.setup {
 EOF
 ```
 
-Example config
+## ⚙️  Config
 
 ```vim
-" Build
-nnoremap <leader>bb <cmd>lua require('ros-nvim').catkin_make()<cr>
-nnoremap <leader>bp <cmd>lua require('ros-nvim').catkin_make_pkg()<cr>
 
-" Test
-nnoremap <leader>rt <cmd>lua require('ros-nvim').rostest()<cr>
+" Search files in current package
+nnoremap <leader>fp <cmd>lua require('ros-nvim.telescope.package').search_package()<cr>
+" Live grep in current package
+nnoremap <leader>fgp <cmd>lua require('ros-nvim.telescope.package').grep_package()<cr>
 
+" ROS Introspection
+nnoremap <leader>rtl <cmd>lua require('ros-nvim.telescope.pickers').topic_picker()<cr>
+nnoremap <leader>rnl <cmd>lua require('ros-nvim.telescope.pickers').node_picker()<cr>
+nnoremap <leader>rsl <cmd>lua require('ros-nvim.telescope.pickers').service_picker()<cr>
+nnoremap <leader>rds <cmd>lua require('ros-nvim.telescope.pickers').srv_picker()<cr>
+nnoremap <leader>rdm <cmd>lua require('ros-nvim.telescope.pickers').msg_picker()<cr>
 
-" Node/topic/service info
-nnoremap <leader>rtl <cmd>lua require('ros-nvim').topic_picker()<cr>
-nnoremap <leader>rnl <cmd>lua require('ros-nvim').node_picker()<cr>
-nnoremap <leader>rsl <cmd>lua require('ros-nvim').service_picker()<cr>
+" Build entire workspace
+nnoremap <leader>bb <cmd>lua require('ros-nvim.build').catkin_make()<cr>
+" Build current package
+nnoremap <leader>bp <cmd>lua require('ros-nvim.build').catkin_make_pkg()<cr>
 
-" Msg/srv
-nnoremap <leader>rds <cmd>lua require('ros-nvim').srv_picker()<cr>
-nnoremap <leader>rdm <cmd>lua require('ros-nvim').msg_picker()<cr>
+" Execute current rostest
+nnoremap <leader>rt <cmd>lua require('ros-nvim.test').rostest()<cr>
 
-" Search in current ROS package
-nnoremap <leader>fp <cmd>lua require('ros-nvim').search_package()<cr>
-nnoremap <leader>fgp <cmd>lua require('ros-nvim').grep_package()<cr>
 ```
