@@ -1,4 +1,4 @@
-# ros.nvim
+# ros-nvim
 ROS Integration in Neovim
 
 Features
@@ -29,14 +29,14 @@ With your plugin manager of choice:
 
 vim-plug:
 ```vim
-Plug 'thibthib18/ros.nvim'
+Plug 'thibthib18/ros-nvim'
 ```
 
 Setup
 
 In Lua:
 ```lua
-require 'ros.nvim'.setup {
+require 'ros-nvim'.setup {
   -- path to your catkin workspace
   catkin_ws_path = "~/catkin_ws",
   -- terminal height for build / test
@@ -47,7 +47,7 @@ require 'ros.nvim'.setup {
 In Vim, simply enclose it in a lua block:
 ```vim
 lua << EOF
-require 'ros.nvim'.setup {
+require 'ros-nvim'.setup {
   -- path to your catkin workspace
   catkin_ws_path = "~/catkin_ws",
   -- terminal height for build / test
@@ -60,23 +60,23 @@ Example config
 
 ```vim
 " Build
-nnoremap <leader>bb <cmd>lua require('ros.nvim').catkin_make()<cr>
-nnoremap <leader>bp <cmd>lua require('ros.nvim').catkin_make_pkg()<cr>
+nnoremap <leader>bb <cmd>lua require('ros-nvim').catkin_make()<cr>
+nnoremap <leader>bp <cmd>lua require('ros-nvim').catkin_make_pkg()<cr>
 
 " Test
-nnoremap <leader>rt <cmd>lua require('ros.nvim').rostest()<cr>
+nnoremap <leader>rt <cmd>lua require('ros-nvim').rostest()<cr>
 
 
 " Node/topic/service info
-nnoremap <leader>rtl <cmd>lua require('ros.nvim').topic_picker()<cr>
-nnoremap <leader>rnl <cmd>lua require('ros.nvim').node_picker()<cr>
-nnoremap <leader>rsl <cmd>lua require('ros.nvim').service_picker()<cr>
+nnoremap <leader>rtl <cmd>lua require('ros-nvim').topic_picker()<cr>
+nnoremap <leader>rnl <cmd>lua require('ros-nvim').node_picker()<cr>
+nnoremap <leader>rsl <cmd>lua require('ros-nvim').service_picker()<cr>
 
 " Msg/srv
-nnoremap <leader>rds <cmd>lua require('ros.nvim').srv_picker()<cr>
-nnoremap <leader>rdm <cmd>lua require('ros.nvim').msg_picker()<cr>
+nnoremap <leader>rds <cmd>lua require('ros-nvim').srv_picker()<cr>
+nnoremap <leader>rdm <cmd>lua require('ros-nvim').msg_picker()<cr>
 
 " Search in current ROS package
-nnoremap <leader>fp <cmd>lua require('ros.nvim').search_package()<cr>
-nnoremap <leader>fgp <cmd>lua require('ros.nvim').grep_package()<cr>
+nnoremap <leader>fp <cmd>lua require('ros-nvim').search_package()<cr>
+nnoremap <leader>fgp <cmd>lua require('ros-nvim').grep_package()<cr>
 ```

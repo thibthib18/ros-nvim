@@ -1,5 +1,5 @@
 local utils = require("ros.vim-utils")
-local package = require("ros.vim-utils")
+local package = require("ros.package")
 
 local M = {}
 
@@ -27,7 +27,7 @@ function M.catkin_make_pkg()
         return
     end
     local suffix = " --pkg " .. pkg_name
-    catkin_make(suffix)
+    M.catkin_make(suffix)
 end
 
 return M

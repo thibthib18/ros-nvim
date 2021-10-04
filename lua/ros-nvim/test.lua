@@ -1,4 +1,4 @@
-local package = require("ros.vim-utils")
+local package = require("ros.package")
 local utils = require("ros.vim-utils")
 
 local M = {}
