@@ -13,7 +13,7 @@ function M.get_current_package_name(path)
 end
 
 function M.get_current_package_path()
-    local pkg_name = get_current_package_name()
+    local pkg_name = M.get_current_package_name()
     if pkg_name == nil then
         return
     end
