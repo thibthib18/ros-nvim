@@ -26,6 +26,7 @@ Wraps ROS CLI utils (`rosnode`, `rostopic`, `rosmsg`, etc) with Vim and Telescop
 - Services list & info
 - Msgs list & info
 - Srvs list & info
+- Params list & values
 
 ## 🦒 Requirements
 
@@ -91,6 +92,8 @@ nnoremap <leader>rsl <cmd>lua require('ros-nvim.telescope.pickers').service_pick
 nnoremap <leader>rds <cmd>lua require('ros-nvim.telescope.pickers').srv_picker()<cr>
 " Message definitions list & info
 nnoremap <leader>rdm <cmd>lua require('ros-nvim.telescope.pickers').msg_picker()<cr>
+" Params list & values
+nnoremap <leader>rpl <cmd>lua require('ros-nvim.telescope.pickers').param_picker()<cr>
 
 " Build entire workspace
 nnoremap <leader>bb <cmd>lua require('ros-nvim.build').catkin_make()<cr>
