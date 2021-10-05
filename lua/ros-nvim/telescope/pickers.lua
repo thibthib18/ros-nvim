@@ -106,7 +106,7 @@ end
 function M.param_picker()
     local opts = {
         command = "rosparam",
-        command = "get",
+        preview_arg = "get",
         preview_title = "Param value",
         prompt_title = "ROS Params",
         results_title = "Parameters List"
