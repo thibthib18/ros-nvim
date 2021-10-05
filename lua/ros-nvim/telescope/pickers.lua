@@ -30,7 +30,7 @@ local function info_picker(opts)
                                 entry_maker = utils.gen_from_name()
                             },
                             sorter = conf.generic_sorter(picker_opts),
-                            previewer = ros_previewers.info_preview(opts.command),
+                            previewer = ros_previewers.info_preview(opts.command, opts.preview_arg),
                             attach_mappings = function(_, map)
                                 action_set.select:replace(
                                     function(prompt_bufnr, type)
@@ -51,6 +51,7 @@ end
 function M.node_picker()
     local opts = {
         command = "rosnode",
+        preview_arg = "info",
         preview_title = "Node Info",
         prompt_title = "ROS Nodes",
         results_title = "Nodes List"
@@ -61,6 +62,7 @@ end
 function M.topic_picker()
     local opts = {
         command = "rostopic",
+        preview_arg = "info",
         preview_title = "Topic Info",
         prompt_title = "ROS Topics",
         results_title = "Topics List"
@@ -71,6 +73,7 @@ end
 function M.service_picker()
     local opts = {
         command = "rosservice",
+        preview_arg = "info",
         preview_title = "Service Info",
         prompt_title = "ROS Services",
         results_title = "Services List"
@@ -81,6 +84,7 @@ end
 function M.srv_picker()
     local opts = {
         command = "rossrv",
+        preview_arg = "info",
         preview_title = "Service Info",
         prompt_title = "ROS Services",
         results_title = "Services List"
@@ -91,9 +95,21 @@ end
 function M.msg_picker()
     local opts = {
         command = "rosmsg",
+        preview_arg = "info",
         preview_title = "Message Info",
         prompt_title = "ROS Messages",
         results_title = "Messages List"
+    }
+    info_picker(opts)
+end
+
+function M.param_picker()
+    local opts = {
+        command = "rosparam",
+        command = "get",
+        preview_title = "Param value",
+        prompt_title = "ROS Params",
+        results_title = "Parameters List"
     }
     info_picker(opts)
 end

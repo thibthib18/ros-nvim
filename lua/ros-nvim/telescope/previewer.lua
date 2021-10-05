@@ -3,7 +3,7 @@ local previewers = require "telescope.previewers"
 
 local M = {}
 
-function M.info_preview(command)
+function M.info_preview(command, arg)
     return previewers.new_buffer_previewer {
         get_buffer_by_name = function(_, entry)
             return entry.name
@@ -16,7 +16,7 @@ function M.info_preview(command)
                     {
                         enable_recording = true,
                         command = command,
-                        args = {"info", entry.name},
+                        args = {arg, entry.name},
                         on_exit = vim.schedule_wrap(
                             function(j_self, _, _)
                                 local result = j_self:result()
