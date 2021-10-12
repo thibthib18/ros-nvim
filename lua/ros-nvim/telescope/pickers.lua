@@ -89,8 +89,8 @@ function M.topic_picker()
                 local picker = action_state.get_current_picker(prompt_bufnr)
                 picker:cycle_previewers(1)
             end
-            map("n", "<c-u>", open_terminal_with_cmd("rostopic pub"))
-            map("i", "<c-u>", open_terminal_with_cmd("rostopic pub"))
+            map("n", "<c-b>", open_terminal_with_cmd("rostopic pub"))
+            map("i", "<c-b>", open_terminal_with_cmd("rostopic pub"))
             map("n", "<c-e>", cycle_previewers)
             map("i", "<c-e>", cycle_previewers)
         end
