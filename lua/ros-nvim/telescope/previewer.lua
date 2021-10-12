@@ -26,7 +26,9 @@ function M.topic_echo_preview()
                                     local linesCount = vim.api.nvim_buf_line_count(bufnr)
                                     local winnr = vim.fn.bufwinnr(bufnr)
                                     local winid = vim.fn.win_getid(winnr)
-                                    vim.api.nvim_win_set_cursor(winid, {linesCount, 0})
+                                    if winid ~= 0 then
+                                        vim.api.nvim_win_set_cursor(winid, {linesCount, 0})
+                                    end
                                 else
                                     j_self:_stop()
                                 end
