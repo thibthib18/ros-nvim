@@ -5,6 +5,7 @@ local M = {}
 
 function M.topic_echo_preview()
     return previewers.new_buffer_previewer {
+        title = "Echo",
         get_buffer_by_name = function(_, entry)
             return entry.name
         end,
@@ -43,6 +44,7 @@ end
 
 function M.info_preview(command, arg)
     return previewers.new_buffer_previewer {
+        title = "Info",
         get_buffer_by_name = function(_, entry)
             return entry.name
         end,
