@@ -38,14 +38,9 @@ local function info_picker(opts)
                                         print("ok")
                                     end
                                 )
-                                map(
-                                    "n",
-                                    "<c-e>",
-                                    function(prompt_bufnr)
-                                        local picker = action_state.get_current_picker(prompt_bufnr)
-                                        picker:cycle_previewers(1)
-                                    end
-                                )
+                                if opts.mappings ~= nil then
+                                    opts.mappings(map)
+                                end
                                 return true
                             end
                         }
@@ -74,7 +69,15 @@ function M.topic_picker()
         preview_arg = "info",
         preview_title = "Topic Info",
         prompt_title = "ROS Topics",
-        results_title = "Topics List"
+        results_title = "Topics List",
+        mappings = function(map)
+            local cycle_previewers = function(prompt_bufnr)
+                local picker = action_state.get_current_picker(prompt_bufnr)
+                picker:cycle_previewers(1)
+            end
+            map("n", "<c-e>", cycle_previewers)
+            map("i", "<c-e>", cycle_previewers)
+        end
     }
     opts.previewers = {
         ros_previewers.info_preview(opts.command, opts.preview_arg),
