@@ -83,7 +83,6 @@ function M.topic_picker()
         ros_previewers.info_preview(opts.command, opts.preview_arg),
         ros_previewers.topic_echo_preview()
     }
-    print(#opts.previewers)
     info_picker(opts)
 end
 
