@@ -23,8 +23,9 @@ function M.open_split(with_terminal)
     M.resize_split()
 end
 
-function M.send_command_to_current_term(command, autoscroll, name)
-    local send_to_term = ':call jobsend(b:terminal_job_id, "' .. command .. '\\n")'
+function M.send_command_to_current_term(command, autoscroll, name, enter)
+    local append_enter = enter == nil and "\\n" or ""
+    local send_to_term = ':call jobsend(b:terminal_job_id, "' .. command .. append_enter .. '")'
     name = name or command
     vim.cmd(":file " .. name)
     vim.cmd(send_to_term)
