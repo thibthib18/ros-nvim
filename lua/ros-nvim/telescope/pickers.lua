@@ -6,6 +6,7 @@ local action_set = require "telescope.actions.set"
 local ros_previewers = require "ros-nvim.telescope.previewer"
 local utils = require "ros-nvim.telescope.utils"
 local action_state = require "telescope.actions.state"
+local vim_utils = require "ros-nvim.vim-utils"
 
 local M = {}
 
@@ -52,13 +53,26 @@ local function info_picker(opts)
     job:start()
 end
 
+local function open_terminal_with_cmd(partial_command)
+    return function(prompt_bufnr)
+        local entry_name = action_state.get_selected_entry().name
+        local command = partial_command .. " " .. entry_name
+        vim_utils.open_split()
+        vim_utils.send_command_to_current_term(command, true, nil, false)
+    end
+end
+
 function M.node_picker()
     local opts = {
         command = "rosnode",
         preview_arg = "info",
         preview_title = "Node Info",
         prompt_title = "ROS Nodes",
-        results_title = "Nodes List"
+        results_title = "Nodes List",
+        mappings = function(map)
+            map("n", "<c-k>", open_terminal_with_cmd("rosnode kill"))
+            map("i", "<c-k>", open_terminal_with_cmd("rosnode kill"))
+        end
     }
     info_picker(opts)
 end
@@ -75,6 +89,8 @@ function M.topic_picker()
                 local picker = action_state.get_current_picker(prompt_bufnr)
                 picker:cycle_previewers(1)
             end
+            map("n", "<c-p>", open_terminal_with_cmd("rostopic pub"))
+            map("i", "<c-p>", open_terminal_with_cmd("rostopic pub"))
             map("n", "<c-e>", cycle_previewers)
             map("i", "<c-e>", cycle_previewers)
         end
@@ -92,7 +108,11 @@ function M.service_picker()
         preview_arg = "info",
         preview_title = "Service Info",
         prompt_title = "ROS Services",
-        results_title = "Services List"
+        results_title = "Services List",
+        mappings = function(map)
+            map("n", "<c-s>", open_terminal_with_cmd("rosservice call"))
+            map("i", "<c-s>", open_terminal_with_cmd("rosservice call"))
+        end
     }
     info_picker(opts)
 end
@@ -125,7 +145,11 @@ function M.param_picker()
         preview_arg = "get",
         preview_title = "Param value",
         prompt_title = "ROS Params",
-        results_title = "Parameters List"
+        results_title = "Parameters List",
+        mappings = function(map)
+            map("n", "<c-s>", open_terminal_with_cmd("rosparam set"))
+            map("i", "<c-s>", open_terminal_with_cmd("rosparam set"))
+        end
     }
     info_picker(opts)
 end
