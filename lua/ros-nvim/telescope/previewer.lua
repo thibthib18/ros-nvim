@@ -19,9 +19,9 @@ function M.topic_echo_preview()
                         command = "rostopic",
                         args = {"echo", entry.name},
                         on_stdout = vim.schedule_wrap(
-                            function(error, data, j_self)
+                            function(error, line, j_self)
                                 if vim.api.nvim_buf_is_valid(bufnr) then
-                                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, {data})
+                                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, {line})
                                 else
                                     j_self:_stop()
                                 end
