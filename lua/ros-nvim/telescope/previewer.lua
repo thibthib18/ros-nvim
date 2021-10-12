@@ -22,6 +22,11 @@ function M.topic_echo_preview()
                             function(error, line, j_self)
                                 if vim.api.nvim_buf_is_valid(bufnr) then
                                     vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, {line})
+                                    -- continuously place cursor on last line to keep scrolling
+                                    local linesCount = vim.api.nvim_buf_line_count(bufnr)
+                                    local winnr = vim.fn.bufwinnr(bufnr)
+                                    local winid = vim.fn.win_getid(winnr)
+                                    vim.api.nvim_win_set_cursor(winid, {linesCount, 0})
                                 else
                                     j_self:_stop()
                                 end
@@ -31,11 +36,6 @@ function M.topic_echo_preview()
                             function(j_self, _, _)
                                 local result = j_self:result()
                                 vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, result)
-                                -- continuously place cursor on last line to keep scrolling
-                                local linesCount = vim.api.nvim_buf_line_count(bufnr)
-                                local winnr = vim.fn.bufwinnr(bufnr)
-                                local winid = vim.fn.win_getid(winnr)
-                                vim.api.nvim_win_set_cursor(winid, {linesCount, 0})
                             end
                         )
                     }
