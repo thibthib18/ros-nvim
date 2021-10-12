@@ -3,6 +3,44 @@ local previewers = require "telescope.previewers"
 
 local M = {}
 
+function M.topic_echo_preview()
+    return previewers.new_buffer_previewer {
+        get_buffer_by_name = function(_, entry)
+            return entry.name
+        end,
+        define_preview = function(self, entry)
+            local bufnr = self.state.bufnr
+            if self.state.bufname ~= entry.name or vim.api.nvim_buf_line_count(bufnr) == 1 then
+                local job =
+                    Job:new(
+                    {
+                        enable_recording = true,
+                        command = "rostopic",
+                        args = {"echo", entry.name},
+                        on_stdout = vim.schedule_wrap(
+                            function(error, data, j_self)
+                                if vim.api.nvim_buf_is_valid(bufnr) then
+                                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, {data})
+                                else
+                                    j_self:_stop()
+                                end
+                            end
+                        ),
+                        on_exit = vim.schedule_wrap(
+                            function(j_self, _, _)
+                                local result = j_self:result()
+                                vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, result)
+                            end
+                        )
+                    }
+                )
+                --job:sync()
+                job:start()
+            end
+        end
+    }
+end
+
 function M.info_preview(command, arg)
     return previewers.new_buffer_previewer {
         get_buffer_by_name = function(_, entry)

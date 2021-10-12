@@ -5,6 +5,7 @@ local conf = require "telescope.config".values
 local action_set = require "telescope.actions.set"
 local ros_previewers = require "ros-nvim.telescope.previewer"
 local utils = require "ros-nvim.telescope.utils"
+local action_state = require "telescope.actions.state"
 
 local M = {}
 
@@ -30,11 +31,19 @@ local function info_picker(opts)
                                 entry_maker = utils.gen_from_name()
                             },
                             sorter = conf.generic_sorter(picker_opts),
-                            previewer = ros_previewers.info_preview(opts.command, opts.preview_arg),
+                            previewer = opts.previewers or ros_previewers.info_preview(opts.command, opts.preview_arg),
                             attach_mappings = function(_, map)
                                 action_set.select:replace(
                                     function(prompt_bufnr, type)
                                         print("ok")
+                                    end
+                                )
+                                map(
+                                    "n",
+                                    "<c-e>",
+                                    function(prompt_bufnr)
+                                        local picker = action_state.get_current_picker(prompt_bufnr)
+                                        picker:cycle_previewers(1)
                                     end
                                 )
                                 return true
@@ -67,6 +76,11 @@ function M.topic_picker()
         prompt_title = "ROS Topics",
         results_title = "Topics List"
     }
+    opts.previewers = {
+        ros_previewers.info_preview(opts.command, opts.preview_arg),
+        ros_previewers.topic_echo_preview()
+    }
+    print(#opts.previewers)
     info_picker(opts)
 end
 
