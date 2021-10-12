@@ -89,8 +89,8 @@ function M.topic_picker()
                 local picker = action_state.get_current_picker(prompt_bufnr)
                 picker:cycle_previewers(1)
             end
-            map("n", "<c-p>", open_terminal_with_cmd("rostopic pub"))
-            map("i", "<c-p>", open_terminal_with_cmd("rostopic pub"))
+            map("n", "<c-u>", open_terminal_with_cmd("rostopic pub"))
+            map("i", "<c-u>", open_terminal_with_cmd("rostopic pub"))
             map("n", "<c-e>", cycle_previewers)
             map("i", "<c-e>", cycle_previewers)
         end
@@ -110,8 +110,8 @@ function M.service_picker()
         prompt_title = "ROS Services",
         results_title = "Services List",
         mappings = function(map)
-            map("n", "<c-s>", open_terminal_with_cmd("rosservice call"))
-            map("i", "<c-s>", open_terminal_with_cmd("rosservice call"))
+            map("n", "<c-e>", open_terminal_with_cmd("rosservice call"))
+            map("i", "<c-e>", open_terminal_with_cmd("rosservice call"))
         end
     }
     info_picker(opts)
@@ -147,8 +147,8 @@ function M.param_picker()
         prompt_title = "ROS Params",
         results_title = "Parameters List",
         mappings = function(map)
-            map("n", "<c-s>", open_terminal_with_cmd("rosparam set"))
-            map("i", "<c-s>", open_terminal_with_cmd("rosparam set"))
+            map("n", "<c-e>", open_terminal_with_cmd("rosparam set"))
+            map("i", "<c-e>", open_terminal_with_cmd("rosparam set"))
         end
     }
     info_picker(opts)
