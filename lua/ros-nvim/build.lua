@@ -7,13 +7,13 @@ function M.catkin_make(suffix, flags)
     flags = flags or ""
     local make_command = ROS_CONFIG.catkin_program .. (suffix or "") .. " " .. flags
     local current_bufnr = vim.fn.bufnr()
-    local bufnr = vim.fn.bufnr("catkin_make")
+    local bufnr = vim.fn.bufnr(ROS_CONFIG.catkin_program)
     if bufnr ~= -1 then
         utils.go_to_buffer_id(bufnr)
     else
         utils.open_split()
     end
-    local catkin_ws_path = "~/catkin_ws"
+    local catkin_ws_path = ROS_CONFIG.catkin_ws_path
     utils.send_command_to_current_term("cd " .. catkin_ws_path, false)
     utils.send_command_to_current_term(make_command)
     utils.go_to_buffer_id(current_bufnr)
