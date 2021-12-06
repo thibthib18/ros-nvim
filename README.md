@@ -57,6 +57,8 @@ require 'ros-nvim'.setup {
   catkin_ws_path = "~/catkin_ws",
   -- terminal height for build / test
   terminal_height = 8
+  -- make program (e.g. "catkin_make" or "catkin build" )
+  catkin_program = "catkin_make"
 }
 ```
 
@@ -68,6 +70,8 @@ require 'ros-nvim'.setup {
   catkin_ws_path = "~/catkin_ws",
   -- terminal height for build / test
   terminal_height = 8
+  -- make program (e.g. "catkin_make" or "catkin build" )
+  catkin_program = "catkin_make"
 }
 EOF
 ```
