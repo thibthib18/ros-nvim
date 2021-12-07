@@ -8,7 +8,9 @@ M.search_package = function()
         vim.notify("Not in a ROS package", "error", {title = "Search ROS package"})
         return
     end
-    package_path, _ = string.gsub(package_path, "/home/sv/catkin_ws/src", "~/main")
+    if ROS_CONFIG.catkin_ws_link_from ~= nil then
+        package_path, _ = string.gsub(package_path, ROS_CONFIG.catkin_ws_link_from, ROS_CONFIG.catkin_ws_link_to)
+    end
     require("telescope.builtin").find_files(
         {
             prompt_title = "< " .. package_name .. " >",
@@ -23,7 +25,9 @@ M.grep_package = function()
         vim.notify("Not in a ROS package", "error", {title = "Grep ROS package"})
         return
     end
-    package_path, _ = string.gsub(package_path, "/home/sv/catkin_ws/src", "~/main")
+    if ROS_CONFIG.catkin_ws_link_from ~= nil then
+        package_path, _ = string.gsub(package_path, ROS_CONFIG.catkin_ws_link_from, ROS_CONFIG.catkin_ws_link_to)
+    end
     require("telescope.builtin").live_grep(
         {
             search_dirs = {package_path}
