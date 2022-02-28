@@ -30,13 +30,15 @@ local function info_picker(opts)
                                 entry_maker = utils.gen_from_name()
                             },
                             sorter = conf.generic_sorter(picker_opts),
-                            previewer = ros_previewers.info_preview(opts.command, opts.preview_arg),
+                            previewer = opts.previewers or ros_previewers.info_preview(opts.command, opts.preview_arg),
                             attach_mappings = function(_, map)
                                 action_set.select:replace(
                                     function(prompt_bufnr, type)
-                                        print("ok")
                                     end
                                 )
+                                if opts.mappings ~= nil then
+                                    opts.mappings(map)
+                                end
                                 return true
                             end
                         }
@@ -54,7 +56,8 @@ function M.node_picker()
         preview_arg = "info",
         preview_title = "Node Info",
         prompt_title = "ROS Nodes",
-        results_title = "Nodes List"
+        results_title = "Nodes List",
+        mappings = ROS_CONFIG.node_picker_mappings
     }
     info_picker(opts)
 end
@@ -65,7 +68,12 @@ function M.topic_picker()
         preview_arg = "info",
         preview_title = "Topic Info",
         prompt_title = "ROS Topics",
-        results_title = "Topics List"
+        results_title = "Topics List",
+        mappings = ROS_CONFIG.topic_picker_mappings
+    }
+    opts.previewers = {
+        ros_previewers.info_preview(opts.command, opts.preview_arg),
+        ros_previewers.topic_echo_preview()
     }
     info_picker(opts)
 end
@@ -76,7 +84,8 @@ function M.service_picker()
         preview_arg = "info",
         preview_title = "Service Info",
         prompt_title = "ROS Services",
-        results_title = "Services List"
+        results_title = "Services List",
+        mappings = ROS_CONFIG.service_picker_mappings
     }
     info_picker(opts)
 end
@@ -109,7 +118,8 @@ function M.param_picker()
         preview_arg = "get",
         preview_title = "Param value",
         prompt_title = "ROS Params",
-        results_title = "Parameters List"
+        results_title = "Parameters List",
+        mappings = ROS_CONFIG.param_picker_mappings
     }
     info_picker(opts)
 end
