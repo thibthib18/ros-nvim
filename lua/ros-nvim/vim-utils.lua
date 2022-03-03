@@ -1,4 +1,5 @@
 local action_state = require "telescope.actions.state"
+local actions = require "telescope.actions"
 local M = {}
 
 function M.go_to_buffer_id(bufnr)
@@ -27,6 +28,7 @@ end
 
 function M.open_terminal_with_format_cmd_entry(unformatted_command)
     return function(prompt_bufnr)
+        actions.close(prompt_bufnr)
         local entry_name = action_state.get_selected_entry().name
         local command = string.format(unformatted_command, entry_name)
         M.open_terminal()
