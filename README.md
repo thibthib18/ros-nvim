@@ -44,7 +44,8 @@ Plug 'thibthib18/ros-nvim'
 Packer:
 ```lua
 use { 'thibthib18/ros-nvim', config=function()
-  require 'ros-nvim'.setup({})
+    require 'ros-nvim'.setup({})
+  end
 }
 ```
 
