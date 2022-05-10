@@ -63,7 +63,7 @@ require 'ros-nvim'.setup {
 
   --method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
   open_terminal_method = function()
-      require "ros-nvim.vim-utils".open_split()
+      require vim-utils.open_split()
   end,
 
   -- terminal height for build / test, only valid with `open_terminal_method=open_split()`
@@ -109,7 +109,7 @@ require 'ros-nvim'.setup {
 
   --method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
   open_terminal_method = function()
-      require "ros-nvim.vim-utils".open_split()
+      require vim-utils.open_split()
   end,
 
   -- terminal height for build / test, only valid with `open_terminal_method=open_split()`
