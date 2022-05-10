@@ -13,7 +13,7 @@ function M.catkin_make(suffix, flags)
     else
         utils.open_terminal()
     end
-    local catkin_ws_path = "~/catkin_ws"
+    local catkin_ws_path = ROS_CONFIG.catkin_ws_path
     utils.send_command_to_current_term("cd " .. catkin_ws_path, false)
     utils.send_command_to_current_term(make_command)
     utils.go_to_buffer_id(current_bufnr)
