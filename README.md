@@ -53,6 +53,7 @@ use { 'thibthib18/ros-nvim', config=function()
 
 In Lua:
 ```lua
+local vim_utils = require "ros-nvim.vim-utils"
 require 'ros-nvim'.setup {
   -- path to your catkin workspace
   catkin_ws_path = "~/catkin_ws",
@@ -98,6 +99,7 @@ require 'ros-nvim'.setup {
 In Vim, simply enclose it in a lua block:
 ```vim
 lua << EOF
+local vim_utils = require "ros-nvim.vim-utils"
 require 'ros-nvim'.setup {
   -- path to your catkin workspace
   catkin_ws_path = "~/catkin_ws",
