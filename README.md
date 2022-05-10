@@ -61,7 +61,7 @@ require 'ros-nvim'.setup {
   -- make program (e.g. "catkin_make" or "catkin build" )
   catkin_program = "catkin_make"
 
-  --method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
+  --method for opening terminal for e.g. catkin_make: `vim_utils.open_new_buffer` or custom function
   open_terminal_method = function()
       require vim-utils.open_split()
   end,
