@@ -43,16 +43,37 @@ function M.setup(config)
     end
 end
 
-function M.get_compile_db_path()
-  local name = package.get_current_package_name()
-  if name ~= nil then
-    -- return "/home/davide/catkin_ws/build/" .. name
-    -- table.insert(clang_cmd, "--compile-commands-dir=".. "/home/davide/catkin_ws/build/" .. name)
-    -- return clang_cmd
-    return "--compile-commands-dir=".. "/home/davide/catkin_ws/build/" .. name
+-- returns true if open succeeds, so it exists
+function M.file_exists(name)
+  local f=io.open(name,"r")
+  if f~=nil then
+    io.close(f)
+    return true
+  else
+    return false
   end
 end
 
+-- notification is file is not found
+local no_file = "compile_commands.json does not exist in build dir"
+local not_package = "not in a ROS package"
+
+function M.get_clangd_arg()
+  local name = package.get_current_package_name()
+
+  if name ~= nil then
+    local db_path = "/home/davide/catkin_ws/build/" .. name
+    local db_file = "/home/davide/catkin_ws/build/" .. name .. "/compile_commands.json"
+    -- check if file exists but then pass path
+    if M.file_exists(db_file) then
+      return "--compile-commands-dir=".. db_path
+    else
+      vim.notify(no_file, "warn")
+    end
+  else
+    vim.notify(not_package, "warn")
+  end
+end
 -- local ros_nvim = vim.api.nvim_create_augroup("ros-nvim", {clear = true})
 -- vim.api.nvim_create_autocmd({"BufEnter"}, {pattern="*.cpp,*.cc", callback=cursorline, group = ros_nvim})
 
