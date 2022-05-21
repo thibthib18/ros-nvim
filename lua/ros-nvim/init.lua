@@ -1,6 +1,6 @@
 local vim_utils = require "ros-nvim.vim-utils"
 local action_state = require "telescope.actions.state"
-
+local package = require"ros-nvim.package"
 local M = {}
 
 ROS_CONFIG = {
@@ -41,6 +41,16 @@ function M.setup(config)
             ROS_CONFIG[key] = value
         end
     end
+end
+
+function M.get_compile_db_path()
+  local name = package.get_current_package_name()
+  if name == nil then
+    return nil
+  else
+    return "/home/davide/catkin_ws/build/" .. name .. "/compile_commands.json"
+  end
+
 end
 
 return M
