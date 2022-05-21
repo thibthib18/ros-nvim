@@ -45,12 +45,15 @@ end
 
 function M.get_compile_db_path()
   local name = package.get_current_package_name()
-  if name == nil then
-    return nil
-  else
-    return "/home/davide/catkin_ws/build/" .. name .. "/compile_commands.json"
+  if name ~= nil then
+    -- return "/home/davide/catkin_ws/build/" .. name
+    -- table.insert(clang_cmd, "--compile-commands-dir=".. "/home/davide/catkin_ws/build/" .. name)
+    -- return clang_cmd
+    return "--compile-commands-dir=".. "/home/davide/catkin_ws/build/" .. name
   end
-
 end
+
+-- local ros_nvim = vim.api.nvim_create_augroup("ros-nvim", {clear = true})
+-- vim.api.nvim_create_autocmd({"BufEnter"}, {pattern="*.cpp,*.cc", callback=cursorline, group = ros_nvim})
 
 return M
