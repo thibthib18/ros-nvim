@@ -74,7 +74,8 @@ local not_package = "not in a ROS package"
 function M.get_clangd_arg()
   local name = package.get_current_package_name()
 
-  if name ~= nil then
+  -- name is not nil also when rospkg python is not found
+  if name ~= nil or name ~= 'no_ros_on_system' then
     local db_path = "/home/davide/catkin_ws/build/" .. name
     local db_file = "/home/davide/catkin_ws/build/" .. name .. "/compile_commands.json"
     -- check if file exists but then pass path
