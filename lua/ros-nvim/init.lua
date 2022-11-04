@@ -5,6 +5,7 @@ local M = {}
 
 ROS_CONFIG = {
     catkin_ws_path = "~/catkin_ws",
+    catkin_program = "catkin_make",
     -- vim_utils.open_new_buffer or custom function
     open_terminal_method = function()
         vim_utils.open_split()

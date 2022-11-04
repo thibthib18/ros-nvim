@@ -5,7 +5,7 @@ local M = {}
 
 function M.catkin_make(suffix, flags)
     flags = flags or ""
-    local make_command = "catkin_make" .. (suffix or "") .. " " .. flags
+    local make_command = ROS_CONFIG.catkin_program .. (suffix or "") .. " " .. flags
     local current_bufnr = vim.fn.bufnr()
     local bufnr = vim.fn.bufnr("catkin_make")
     if bufnr ~= -1 then
