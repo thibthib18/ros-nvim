@@ -52,7 +52,7 @@ end
 
 function M.node_picker()
     local opts = {
-        command = "rosnode",
+        command = "ros2 node",
         preview_arg = "info",
         preview_title = "Node Info",
         prompt_title = "ROS Nodes",
@@ -64,7 +64,7 @@ end
 
 function M.topic_picker()
     local opts = {
-        command = "rostopic",
+        command = "ros2 topic",
         preview_arg = "info",
         preview_title = "Topic Info",
         prompt_title = "ROS Topics",
@@ -80,7 +80,7 @@ end
 
 function M.service_picker()
     local opts = {
-        command = "rosservice",
+        command = "ros2 service",
         preview_arg = "info",
         preview_title = "Service Info",
         prompt_title = "ROS Services",
@@ -114,7 +114,7 @@ end
 
 function M.param_picker()
     local opts = {
-        command = "rosparam",
+        command = "ros2 param",
         preview_arg = "get",
         preview_title = "Param value",
         prompt_title = "ROS Params",

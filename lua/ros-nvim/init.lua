@@ -13,26 +13,26 @@ ROS_CONFIG = {
     terminal_height = 8, -- only for split terminal
     -- Picker mappings
     node_picker_mappings = function(map)
-        map("n", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("rosnode kill %s"))
-        map("i", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("rosnode kill %s"))
+        map("n", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("ros2 node kill %s"))
+        map("i", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("ros2 node kill %s"))
     end,
     topic_picker_mappings = function(map)
         local cycle_previewers = function(prompt_bufnr)
             local picker = action_state.get_current_picker(prompt_bufnr)
             picker:cycle_previewers(1)
         end
-        map("n", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("rostopic pub %s"))
-        map("i", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("rostopic pub %s"))
+        map("n", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("ros2 topic pub %s"))
+        map("i", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("ros2 topic pub %s"))
         map("n", "<c-e>", cycle_previewers)
         map("i", "<c-e>", cycle_previewers)
     end,
     service_picker_mappings = function(map)
-        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosservice call %s"))
-        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosservice call %s"))
+        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("ros2 service call %s"))
+        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("ros2 service call %s"))
     end,
     param_picker_mappings = function(map)
-        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosparam set %s"))
-        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosparam set %s"))
+        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("ros2 param set %s"))
+        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("ros2 param set %s"))
     end
 }
 
